@@ -23,7 +23,7 @@ module.exports = {
         });
 
         if(!correntUser){
-            return res.status(401).json({ error: 'Usuario não encontrado!' });
+            return res.status(401).json({ error: 'Usuario ou senha incorreto!' });
         }
 
         return res.json({ user:correntUser.token, id: correntUser._id });
