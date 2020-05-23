@@ -11,7 +11,7 @@ module.exports = {
 
         await TodoSchema.create({ content, user: req.userId });
 
-        return res.status(200).json();
+        return res.status(200).json(req.userId);
     },
     async delete(req, res){
         await TodoSchema.findByIdAndDelete(req.params.id);

@@ -26,6 +26,8 @@ module.exports = {
             return res.status(401).json({ error: 'Usuario ou senha incorreto!' });
         }
 
+        req.userId = correntUser._id;
+
         return res.json({ user:correntUser.token, id: correntUser._id });
     }
 }

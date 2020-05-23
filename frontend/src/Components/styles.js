@@ -4,6 +4,7 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     margin: 0 auto;
+    max-width: 500px;
 
     display: flex;
     flex-direction: column;
@@ -19,7 +20,7 @@ export const Container = styled.div`
 
     div{
         width: 100%;
-        margin: 25px auto;
+        margin: 20px auto;
     }
 
     a{
@@ -56,4 +57,34 @@ export const Input = styled.input`
     border: none;
     border-bottom: 1px solid #138A72;
     height: 30px;
+`
+export const InputTodo = styled.input`
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #138A72;
+    height: 30px;
+`
+export const Todo = styled.div`
+    button{
+        border: none;
+        background-color: transparent;
+        outline: none;
+        width: 10%;
+    }
+`
+export const TodoList = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    button{
+      border: none;
+      background-color: transparent;
+      outline: none;
+    }
+  }
 `

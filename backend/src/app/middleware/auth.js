@@ -3,6 +3,7 @@ module.exports = (req, res, next) => {
     if(!userId){
         return res.status(401).json({ error: 'Usuario não logado!' });
     }
+    
     req.userId = req.headers.userid;
     
     return next();
