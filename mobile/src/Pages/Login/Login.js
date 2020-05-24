@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { TouchableOpacity, Alert } from 'react-native';
+import { TouchableOpacity, Alert, AsyncStorage } from 'react-native';
 import { Container, Logo, Label, Input, Form, SingUp, Button, ButtonSing } from '../../Components/styles';
 
 import logo from '../../Global/Logo.png'
@@ -11,6 +11,19 @@ import api from '../../Services/Api';
 export default function Login(){
     const [email, setEmail] = useState('');
     const [password_hash, setPassword] = useState('');
+
+    useEffect(() => {
+        userLogged();
+    })
+
+    const userLogged = async () =>{
+        const id = await AsyncStorage.getItem('token')
+    
+        if(id){
+            api.defaults.headers.userid = id;
+            navigation.navigate('home')
+        }
+      }
 
     const handleLogin = async () => {
 
@@ -21,7 +34,7 @@ export default function Login(){
 
             api.defaults.headers.userid = response.data.id;
 
-            // await AsyncStorage.setItem('token', response.data.user);
+            await AsyncStorage.setItem('token', response.data.user);
 
             navigation.navigate('home')
         } catch (error) {

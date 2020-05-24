@@ -1,63 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { TouchableOpacity } from 'react-native';
-import { Container, Logo, Label, Input, Form, SingUp, Button, ButtonSing } from '../../Components/styles';
+import { MaterialIcons } from '@expo/vector-icons'
+import { TouchableOpacity, Alert, AsyncStorage } from 'react-native';
+import { Container, Logo, Label, Input, Form, Send, TodoList, HR, Todo } from '../../Components/styles';
 
 import logo from '../../Global/Logo.png'
 import api from '../../Services/Api';
 
 export default function Home(){
-    const [email, setEmail] = useState('');
-    const [password_hash, setPassword] = useState('');
+    const [ content, setContent ] = useState('')
+    const [ todoList, setTodoList ] = useState([])
+    const [ contador, setContador ] = useState(true);
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        requestTodo();
+    }, [contador]);
 
-        const info = { email, password_hash };
+    const newTodo = async () => {
 
-        try {
-            const response = await api.post('/sessions', info);
+        const info = { content }
 
-            api.defaults.headers.userid = response.data.id;
+        await api.post('/todos', info);
 
-            // await AsyncStorage.setItem('token', response.data.user);
+        setContent('')
+        setContador(true);
+    }
 
-            navigation.navigate('')
-        } catch (error) {
-            console.log(error);
-        }
+    const requestTodo = async () => {
+        const response = await api.get('/todos');
+
+        setTodoList(response.data);
+
+        setContador(false)
+    }
+
+    const deleteTodo = async (id) => {
+        await api.delete(`/todos/${id}`)
+
+        setContador(true);
     }
 
     const navigation = useNavigation();
 
     return(
         <Container>
-            <Label>Home</Label>
             <Logo source={logo}/>
 
             <Form>
-                <Label>Email</Label>
-                <Input 
+                <Label>What do you have to do?</Label>
+                <Send>
+                    <TouchableOpacity
+                        onPress={() => newTodo()}
+                    >
+                        <MaterialIcons name='send' size={20} color="#138A72" />
+                    </TouchableOpacity>
+                </Send>
+                <Input
                     autoCapitalize='none' 
-                    value={email}
-                    onChangeText={setEmail} />
-
-                <Label>Password</Label>
-                <Input 
-                    autoCapitalize='none'
-                    value={password_hash}
-                    onChangeText={setPassword} />
-
-                <TouchableOpacity>
-                    <SingUp>Not registered? Sign up</SingUp>
-                </TouchableOpacity>
-                
-                <Button>
-                    <ButtonSing>Sign in</ButtonSing>
-                </Button>
+                    value={content}
+                    onChangeText={setContent} />
             </Form>
+
+            {
+                todoList.map(todo => 
+                    <Todo>
+                        <TodoList key={todo._id}>
+                            <Label>{todo.content}</Label>
+                            <TouchableOpacity
+                                onPress={() => deleteTodo(todo._id)}
+                            >
+                                <MaterialIcons name='close' color='#138A72' size={20} />
+                            </TouchableOpacity>
+                        </TodoList>
+                        <HR/>
+                    </Todo>
+                    )
+            }
         </Container>
     )
 }

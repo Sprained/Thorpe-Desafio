@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { TouchableOpacity, Alert } from 'react-native';
+import { TouchableOpacity, Alert, AsyncStorage } from 'react-native';
 import { Container, Logo, Label, Input, Form, SingUp, Button, ButtonSing } from '../../Components/styles';
 
 import logo from '../../Global/Logo.png'
@@ -22,7 +22,7 @@ export default function Register(){
 
             api.defaults.headers.userid = response.data.id;
 
-            // await AsyncStorage.setItem('token', response.data.user);
+            await AsyncStorage.setItem('token', response.data.user);
 
             navigation.navigate('home')
         } catch (error) {
@@ -34,7 +34,6 @@ export default function Register(){
 
     return(
         <Container>
-            <Label>Register</Label>
             <Logo source={logo}/>
 
             <Form>

@@ -54,3 +54,23 @@ export const ButtonSing = styled.Text`
     text-align: center;
     font-family: 'Bold';
 `
+
+export const Send = styled.View`
+    align-items: flex-end;
+`
+
+export const TodoList = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`
+
+export const HR = styled.View`
+    border-bottom-width: 1px;
+    margin: 3px 0 10px 0;
+    border-color: #138A72;
+`
+
+export const Todo = styled.View`
+    width: 80%;
+    margin-top: 20px;
+`
