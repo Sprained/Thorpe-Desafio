@@ -30,35 +30,30 @@
 
 ------------
 
-Como o sistema se encontra em desenvolvimento foi utilizado o nodemon para facilitar e não precisar ficar restartando o backend tempo inteiro.
-Antes de startar o bakcend na pasta abra o console e coloque os seguintes comandos para baixar as dependências: `yarn` ou `npm i`.
+Como o sistema se encontra em desenvolvimento, foi utilizado o NODEMON para facilitar e não precisar ficar restartando o backend, o tempo inteiro.
+Antes de startar o sistema na pasta abra o console e coloque os seguintes comandos para baixar as dependências: `yarn` ou `npm i`.
 
-Para startar o backend coloque o seguinte comando: ` yarn dev` ou `npm dev`.
+Para startar o back-end, digite o seguinte comando: ` yarn dev` ou `npm dev`. Enquanto o front-end, utilize: ` yarn start` ou `npm start`
 
-Para baixar as dependências do frontend é igual do backend ja mostrado acima. Para startar o frontend segue o comando: ` yarn start` ou `npm start`
-
-Para o mobile, antes de startar, precisa alterar o ip da api. Acesse o arquivo em `mobile/src/Services/Api.js` e modifique a base url `baseURL: 'http://IP_MAQUINA:3333'` pois o expo quando emula no smartphone não reconhece por localhost e sim se tiver o ip da máquina.
-Após isso e tendo o expo instalado no smartphone coloque o comando abaixo: `expo start` e escaneie o qr code.
+Para o mobile, antes de startar, precisa alterar o ip da API. Acesse o arquivo em `mobile/src/Services/Api.js` e modifique a base url `baseURL: 'http://IP_MAQUINA:3333'`, pois o expo quando emula no smartphone não reconhece por localhost e sim se tiver o ip da máquina.
+Após isso, tendo o expo instalado no smartphone, coloque o comando abaixo: `expo start` e escaneie o QR CODE.
 
 ### Desenvolvimento
 
 ------------
 
-A api foi feita basicamente no mesmo dia que foi enviado a imersão, de início deixando bem simples pois queria me concentrar no front, o qual não é a área que eu domino então geralmente demora mais para poder finalizar-lo.
-Front foi feito entre sexta e domingo, após finalizar o front voltei para api e fiz umas pequenas alterações nela assim melhorando-a.
+A API foi feita basicamente no mesmo dia em que foi enviado a imersão. De início, a deixei bem simples, pois queria me concentrar no front-end, o qual não domino, então geralmente demora mais para poder finalizar. O mesmo foi feito entre sexta-feira e domingo, após sua conclusão, voltei para a API, onde fiz umas pequenas alterações de melhoria.
 
 ------------
 
 ###### API
-No desenvolvimento como pedido foi utilizado node e mongo. Utilizei o token jwt para fazer a autenticação, passando esse token pelo header. Esse token pode ser colocado uma validade, assim quando expirar a pessoa seria desconectado tendo que logar novamente para poder validar um novo token.
-Foi feito um middleware para verificar se o usuário o usuário está logado antes de conceder permissões para usar outras funcionalidades do sistema.
+Na construção da API utilizei NodeJS e MongoDB, como solicitado, e também fiz uso do Token JWT para realizar a autenticação, passando o mesmo pelo Header. O token JWT pode receber uma validade que quando a expirar o usuário seria desconectado, sendo necessário seu re-login para gerar um novo token de acesso. Um Middleware, também, foi implementado para verificar se o usuário está logado antes de conceder permissões para usar outras funcionalidades do sistema.
 
 ###### WEB
-No desenvolvimento web foi utilizado o reactjs como solicitado. Seguindo o designer foi feito o front, o qual não é minha principal área portanto teve algumas coisa que não ficaram idênticas, como a largura do login e cadastro de usuário. Porém aparentemente não se encontra tendo nenhum bug visual.
+O desenvolvimento WEB foi realizado com o ReactJS, assim como solicitado, e seguiu o design anexado no desafio em questão. Por o front-end não ser a minha principal área, algumas coisas não saíram idênticas ao design enviado, como a largura do login e cadastro e usuários, porém aparentemente não encontra-se nenhum bug visual.
 
 ###### MOBILE
-Como no WEB utilizei as tecnologias pedidas seguindo o designer, foi feito melhor possível sem encontrar nenhum bug.
-A biblioteca usada para edição da imagem foi do próprio expo, a Expo-Image-Picker, o qual infelizmente não atende completamente o que foi solicitado.
+O React Native e Expo foram usados na construção do mobile, cujo o melhor possível foi feito, sem encontrar algum bug, e assim como no web, seguiu o design anexado ao desafio. A biblioteca consumida para a edição da imagem foi a do próprio Expo, a Expo-Image-Picker, porém, infelizmente, não atende completamente o solicitado.
 
 ### Desenvolvedor
 
