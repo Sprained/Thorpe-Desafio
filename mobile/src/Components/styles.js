@@ -74,3 +74,15 @@ export const Todo = styled.View`
     width: 80%;
     margin-top: 20px;
 `
+
+export const Back = styled.TouchableOpacity`
+    top: 50px;
+    left: 30px;
+    position: absolute;
+`
+
+export const ImagePic = styled.Image`
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+`

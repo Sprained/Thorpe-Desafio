@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { MaterialIcons } from '@expo/vector-icons'
 import { TouchableOpacity, Alert, AsyncStorage } from 'react-native';
-import { Container, Logo, Label, Input, Form, Send, TodoList, HR, Todo } from '../../Components/styles';
+import { Container, Logo, Label, Input, Form, Send, TodoList, HR, Todo, Button, ButtonSing } from '../../Components/styles';
 
 import logo from '../../Global/Logo.png'
 import api from '../../Services/Api';
@@ -65,8 +65,8 @@ export default function Home(){
 
             {
                 todoList.map(todo => 
-                    <Todo>
-                        <TodoList key={todo._id}>
+                    <Todo key={todo._id}>
+                        <TodoList >
                             <Label>{todo.content}</Label>
                             <TouchableOpacity
                                 onPress={() => deleteTodo(todo._id)}
@@ -78,6 +78,12 @@ export default function Home(){
                     </Todo>
                     )
             }
+
+            <Button
+                onPress={() => navigation.navigate('imageeditor')}
+            >
+                <ButtonSing>Image Editor</ButtonSing>
+            </Button>
         </Container>
     )
 }
