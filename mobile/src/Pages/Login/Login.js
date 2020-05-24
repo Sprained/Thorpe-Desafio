@@ -17,10 +17,10 @@ export default function Login(){
     })
 
     const userLogged = async () =>{
-        const id = await AsyncStorage.getItem('token')
+        const token = await AsyncStorage.getItem('token')
     
-        if(id){
-            api.defaults.headers.userid = id;
+        if(token){
+            api.defaults.headers.authorization = `Barrer ${token}`;
             navigation.navigate('home')
         }
       }
@@ -32,9 +32,9 @@ export default function Login(){
         try {
             const response = await api.post('/sessions', info);
 
-            api.defaults.headers.userid = response.data.id;
+            api.defaults.headers.authorization = `Barrer ${response.data.token}`;
 
-            await AsyncStorage.setItem('token', response.data.user);
+            await AsyncStorage.setItem('token', response.data.token);
 
             navigation.navigate('home')
         } catch (error) {

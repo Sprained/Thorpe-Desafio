@@ -20,9 +20,9 @@ export default function Register(){
         try {
             const response = await api.post('/users', info);
 
-            api.defaults.headers.userid = response.data.id;
+            api.defaults.headers.authorization = `Barrer ${response.data.token}`;
 
-            await AsyncStorage.setItem('token', response.data.user);
+            await AsyncStorage.setItem('token', response.data.token);
 
             navigation.navigate('home')
         } catch (error) {

@@ -1,6 +1,8 @@
-const UserSchema = require('../models/UserSchema');
-const generateToken = require('../../utils/generateToken');
+const jwt = require('jsonwebtoken');
 const Yup = require('yup');
+
+const UserSchema = require('../models/UserSchema');
+const authConfig = require('../config/auth');
 
 module.exports = {
     async storage(req, res){
@@ -16,9 +18,18 @@ module.exports = {
         }
 
         const { name, email, password_hash } = req.body
-        const token = generateToken()
-        const user = await UserSchema.create({ token, name, email, password_hash });
+        const user = await UserSchema.create({ 
+            name, 
+            email, 
+            password_hash,
+        });
 
-        return res.json(user);
+        const id = user._id;
+
+        return res.json({
+            token: jwt.sign({id} , authConfig.secret, {
+                expiresIn: authConfig.expiresIn
+            })
+        });
     }
 }

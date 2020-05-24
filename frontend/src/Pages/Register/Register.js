@@ -23,11 +23,11 @@ export default function Register(){
         try {
             const response  = await Api.post('/users', info);
 
-            Api.defaults.headers.userid = response.data.id;
+            Api.defaults.headers.authorization = `Barrer ${response.data.token}`;
 
             history.push('/home/');
 
-            localStorage.setItem('token', response.data.id);
+            await localStorage.setItem('token', response.data.token);
 
             setEmail('')
             setPassword('')

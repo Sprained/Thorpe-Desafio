@@ -15,8 +15,14 @@ export default function Home(){
     const [ contador, setContador ] = useState(true);
 
     useEffect(() => {
+        userLogged();
         requestTodo();
     }, [contador]);
+
+    const userLogged = () => {
+        const token = localStorage.getItem('token');
+        Api.defaults.headers.authorization = `Barrer ${token}`;
+    }
 
     const newTodo = async (e) => {
         e.preventDefault()

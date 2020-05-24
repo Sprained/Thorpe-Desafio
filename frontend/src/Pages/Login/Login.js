@@ -19,10 +19,10 @@ export default function Login(){
     const history = useHistory();
 
     const userLogged = () => {
-        const id = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
 
-        if(id){
-            Api.defaults.headers.userid = id;
+        if(token){
+            Api.defaults.headers.authorization = `Barrer ${token}`;
             return history.push('/home/');
         }
     }
@@ -35,11 +35,11 @@ export default function Login(){
         try {
             const response = await Api.post('/sessions', info);
 
-            Api.defaults.headers.userid = response.data.id;
+            Api.defaults.headers.authorization = `Barrer ${response.data.token}`;
 
             history.push('/home/');
 
-            localStorage.setItem('token', response.data.id);
+            localStorage.setItem('token', response.data.token);
 
             setEmail('')
             setPassword('')

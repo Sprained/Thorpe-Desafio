@@ -1,5 +1,8 @@
-const UserSchema = require('../models/UserSchema');
 const Yup = require('yup');
+const jwt = require('jsonwebtoken');
+
+const UserSchema = require('../models/UserSchema');
+const authConfig = require('../config/auth');
 
 module.exports = {
     async storage(req, res){
@@ -29,7 +32,12 @@ module.exports = {
         // req.userId = correntUser._id;
         // res.set('userid', correntUser._id);
         
+        const id = correntUser._id
 
-        return res.json({ user:correntUser.token, id: correntUser._id });
+        return res.json({
+            token: jwt.sign({id} , authConfig.secret, {
+                expiresIn: authConfig.expiresIn
+            })
+        });
     }
 }
