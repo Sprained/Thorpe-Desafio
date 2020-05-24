@@ -31,44 +31,14 @@
 ------------
 
 Como o sistema se encontra em desenvolvimento foi utilizado o nodemon para facilitar e não precisar ficar restartando o backend tempo inteiro.
-Antes de startar o bakcend na pasta abra o console e coloque os seguintes comandos para baixar as dependências:
+Antes de startar o bakcend na pasta abra o console e coloque os seguintes comandos para baixar as dependências: `yarn` ou `npm i`.
 
-    yarn
+Para startar o backend coloque o seguinte comando: ` yarn dev` ou `npm dev`.
 
-ou
+Para baixar as dependências do frontend é igual do backend ja mostrado acima. Para startar o frontend segue o comando: ` yarn start` ou `npm start`
 
-    npm i
-
-Para startar o backend coloque o seguinte comando:
-
-    yarn dev
-
-ou
-
-    npm dev
-
-Para baixar as dependências do frontend é igual do backend ja mostrado acima. Para startar o frontend segue o comando:
-
-    yarn start
-
-ou
-
-    npm start
-
-Para o mobile, antes de startar, precisa alterar o ip da api. Acesse o arquivo em
-
-    mobile/src/Services/Api.js
-
-e modifique a base url
-
-    baseURL: 'http://IP_MAQUINA:3333'
-
-pois o expo quando emula no smartphone não reconhece por localhost e sim se tiver o ip da máquina.
-Após isso e tendo o expo instalado no smartphone coloque o comando abaixo:
-
-    expo start
-
-e escaneie o qr code.
+Para o mobile, antes de startar, precisa alterar o ip da api. Acesse o arquivo em `mobile/src/Services/Api.js` e modifique a base url `baseURL: 'http://IP_MAQUINA:3333'` pois o expo quando emula no smartphone não reconhece por localhost e sim se tiver o ip da máquina.
+Após isso e tendo o expo instalado no smartphone coloque o comando abaixo: `expo start` e escaneie o qr code.
 
 ### Desenvolvimento
 
