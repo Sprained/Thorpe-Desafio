@@ -22,6 +22,7 @@ export default function Login(){
         const id = localStorage.getItem('token');
 
         if(id){
+            Api.defaults.headers.userid = id;
             return history.push('/home/');
         }
     }
@@ -34,7 +35,7 @@ export default function Login(){
         try {
             const response = await Api.post('/sessions', info);
 
-            response.headers['userid'] = response.data.id
+            Api.defaults.headers.userid = response.data.id;
 
             history.push('/home/');
 

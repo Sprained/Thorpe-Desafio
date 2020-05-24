@@ -10,7 +10,7 @@ const authMiddleware = require('./app/middleware/auth');
 routes.post('/users', UserController.storage);
 routes.post('/sessions', SessionController.storage);
 
-// routes.use(authMiddleware);
+routes.use(authMiddleware);
 
 routes.get('/todos', TodoController.index);
 routes.post('/todos', TodoController.storage);

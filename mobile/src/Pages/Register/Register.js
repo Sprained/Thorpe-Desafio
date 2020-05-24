@@ -8,16 +8,17 @@ import { Container, Logo, Label, Input, Form, SingUp, Button, ButtonSing } from 
 import logo from '../../Global/Logo.png'
 import api from '../../Services/Api';
 
-export default function Login(){
+export default function Register(){
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password_hash, setPassword] = useState('');
+    const [repeat, setRepeat] = useState('');
 
-    const handleLogin = async () => {
-
-        const info = { email, password_hash };
+    const handleRegister = async () => {
+        const info = { name, email, password_hash };
 
         try {
-            const response = await api.post('/sessions', info);
+            const response = await api.post('/users', info);
 
             api.defaults.headers.userid = response.data.id;
 
@@ -33,9 +34,16 @@ export default function Login(){
 
     return(
         <Container>
+            <Label>Register</Label>
             <Logo source={logo}/>
 
             <Form>
+                <Label>Name</Label>
+                <Input 
+                    autoCapitalize='none' 
+                    value={name}
+                    onChangeText={setName} />
+
                 <Label>Email</Label>
                 <Input 
                     autoCapitalize='none' 
@@ -48,14 +56,14 @@ export default function Login(){
                     value={password_hash}
                     onChangeText={setPassword} />
 
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('register')}
-                >
-                    <SingUp>Not registered? Sign up</SingUp>
-                </TouchableOpacity>
+                <Label>Repeat</Label>
+                <Input 
+                    autoCapitalize='none'
+                    value={repeat}
+                    onChangeText={setRepeat} />
                 
                 <Button
-                    onPress={() => handleLogin()}
+                    onPress={() => handleRegister()}
                 >
                     <ButtonSing>Sign in</ButtonSing>
                 </Button>

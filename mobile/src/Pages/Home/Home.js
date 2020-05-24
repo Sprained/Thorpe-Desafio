@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { TouchableOpacity, Alert } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Container, Logo, Label, Input, Form, SingUp, Button, ButtonSing } from '../../Components/styles';
 
 import logo from '../../Global/Logo.png'
 import api from '../../Services/Api';
 
-export default function Login(){
+export default function Home(){
     const [email, setEmail] = useState('');
     const [password_hash, setPassword] = useState('');
 
-    const handleLogin = async () => {
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
         const info = { email, password_hash };
 
@@ -23,9 +24,9 @@ export default function Login(){
 
             // await AsyncStorage.setItem('token', response.data.user);
 
-            navigation.navigate('home')
+            navigation.navigate('')
         } catch (error) {
-            Alert.alert(error)
+            console.log(error);
         }
     }
 
@@ -33,6 +34,7 @@ export default function Login(){
 
     return(
         <Container>
+            <Label>Home</Label>
             <Logo source={logo}/>
 
             <Form>
@@ -48,15 +50,11 @@ export default function Login(){
                     value={password_hash}
                     onChangeText={setPassword} />
 
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('register')}
-                >
+                <TouchableOpacity>
                     <SingUp>Not registered? Sign up</SingUp>
                 </TouchableOpacity>
                 
-                <Button
-                    onPress={() => handleLogin()}
-                >
+                <Button>
                     <ButtonSing>Sign in</ButtonSing>
                 </Button>
             </Form>

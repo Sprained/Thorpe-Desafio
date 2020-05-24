@@ -23,7 +23,7 @@ export default function Register(){
         try {
             const response  = await Api.post('/users', info);
 
-            response.headers['userid'] = response.data.id
+            Api.defaults.headers.userid = response.data.id;
 
             history.push('/home/');
 
